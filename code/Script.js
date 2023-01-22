@@ -34,7 +34,6 @@ graph_promise.then((graph) => {
  
   }
 
-
   const width = "1500",
         height = "600",
         radius = "35";           
@@ -61,9 +60,9 @@ graph_promise.then((graph) => {
     .data(["end"])      // Different link/path types can be defined here
     .enter().append("svg:marker")    // This section adds in the arrows
     .attr("id", String)
-    .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 15)
-    .attr("refY", -1.5)
+    .attr("viewBox", "0 -8 15 10")
+    .attr("refX", 20)
+    .attr("refY", -.5)
     .attr("markerWidth", 8)
     .attr("markerHeight", 8)
     .attr("orient", "auto")
@@ -107,7 +106,25 @@ graph_promise.then((graph) => {
       .style("fill","white")
       .style("cursor","pointer");
 
+  var tooltip = d3.select("body")
+      .append("div")
+      .style("position", "absolute")
+      .style("visibility", "hidden")
+      .style("color", "white")
+      .style("padding", "8px")
+      .style("background-color", "#626D71")
+      .style("border-radius", "6px")
+      .style("text-align", "center")
+      .style("width", "auto")
+      .text("");
 
+  link
+      .on("mouseover", function(d){
+        tooltip.html(`La dificultad de este camino es: `+`${d.complexity}`); 
+        return tooltip.style("visibility", "visible");})
+      .on("mousemove", function(){
+        return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
   function ticked(){
     link
@@ -131,7 +148,4 @@ graph_promise.then((graph) => {
 
   simulation.force("link")
     .links(connections.links)
-
-
-
 })
