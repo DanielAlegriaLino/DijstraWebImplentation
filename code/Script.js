@@ -73,20 +73,22 @@ graph_promise.then((graph) => {
       .selectAll("line")
       .data(connections.links)
       .enter().append("line")
-      .attr("marker-end", "url(#end)"); 
-
-      link
+      .attr("marker-end", "url(#end)")
       .style("stroke","#aaa")
       .style("stroke-width","5px")
+      .on("mouseover", function(d){
+        tooltip.html(`La dificultad de este camino es: `+`${d.complexity}`); 
+        return tooltip.style("visibility", "visible");})
+      .on("mousemove", function(){
+        return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
   let node = svg.append("g")
       .attr("class","nodes")
       .selectAll("circle")
       .data(connections.cities)
       .enter().append("circle")
-      .attr("r",radius);
-
-  node 
+      .attr("r",radius) 
       .style("fill","black")
       .style("stroke","#424242")
       .style("stroke-width","1px")
@@ -99,8 +101,6 @@ graph_promise.then((graph) => {
       .enter().append("text")
       .text(function(d){return d.name;})
       .attr("class","label")
-
-  label 
       .style("text-anchor","middle")
       .style("font-size","18px")
       .style("fill","white")
@@ -117,14 +117,6 @@ graph_promise.then((graph) => {
       .style("text-align", "center")
       .style("width", "auto")
       .text("");
-
-  link
-      .on("mouseover", function(d){
-        tooltip.html(`La dificultad de este camino es: `+`${d.complexity}`); 
-        return tooltip.style("visibility", "visible");})
-      .on("mousemove", function(){
-        return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
-      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
   function ticked(){
     link
