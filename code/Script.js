@@ -60,9 +60,9 @@ graph_promise.then((graph) => {
     .data(["end"])      // Different link/path types can be defined here
     .enter().append("svg:marker")    // This section adds in the arrows
     .attr("id", String)
-    .attr("viewBox", "0 -8 15 10")
-    .attr("refX", 20)
-    .attr("refY", -.5)
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 17)
+    .attr("refY", -0.2)
     .attr("markerWidth", 8)
     .attr("markerHeight", 8)
     .attr("orient", "auto")
@@ -117,6 +117,7 @@ graph_promise.then((graph) => {
       .style("text-align", "center")
       .style("width", "auto")
       .text("");
+
 
   function ticked(){
     link
