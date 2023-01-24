@@ -40,8 +40,7 @@ graph_promise.then((graph) => {
 
   let svg = d3.select("#d3svg")
       .append("svg")
-      .attr("width",width)
-      .attr("height",height);
+      .attr("viewBox", `0 0 ${width} ${height}`)
 
       var simulation = d3.forceSimulation()
       .force("link", d3.forceLink().id(function(d) { return d.id; }))
