@@ -1,9 +1,11 @@
-export const drawGraph = (graph) =>{
+export const drawGraph = (graph,path = []) =>{
     let connections = {"cities":[], "links":[]}
     for (let i = 0 ; i < Object.keys(graph).length; i++) {
         let conectors_keys = Object.keys(graph)
         connections["cities"].push(
-          {"id": conectors_keys[i] ,"name": conectors_keys[i].toUpperCase()}
+          {
+            "id": conectors_keys[i],
+            "name": conectors_keys[i].toUpperCase()}
         )    
       
         for(let j = 0; j< Object.keys(graph[conectors_keys[i]]).length; j++){
@@ -11,16 +13,37 @@ export const drawGraph = (graph) =>{
           let node_conector = conectors_keys[i]
           let node_conected = conected_keys[j]
           let weight = graph[node_conector][conected_keys[j]]
-          connections["links"].push(
-            {
-              "source":node_conector,
-              "target":node_conected,
-              "complexity": weight,
-            }
-          )
+
+            connections["links"].push(
+              {
+                "source":node_conector,
+                "target":node_conected,
+                "complexity": weight,
+              })  
         }
-     
       }
+
+      if(path.length>0) {
+        for(let i = 0 ; i< path.length - 1; i++){
+          for(let j = 0 ; j < connections.links.length; j++) {
+            if(connections.links[j].source == path[i] && connections.links[j].target == path[i+1]) {
+              connections.links[j]["selected"] = true;
+            }
+          }
+        }
+      
+        for(let i = 0 ; i< path.length; i++){
+          for(let j= 0; j<connections.cities.length;j++){ 
+            if( connections.cities[j]["id"] == path[i]){
+              connections.cities[j]["selected"] = true;
+            }
+          }
+        }
+      
+      }
+
+
+      
     
       const width = "1500",
             height = "600",
@@ -54,14 +77,20 @@ export const drawGraph = (graph) =>{
         .attr("markerHeight", 8)
         .attr("orient", "auto")
         .append("svg:path")
-        .attr("d", "M0,-5L10,0L0,5");                   
+        .attr("d", "M0,-5L10,0L0,5");    
+                       
     
       let link = svg.append("g")
           .selectAll("line")
           .data(connections.links)
           .enter().append("line")
           .attr("marker-end", "url(#end)")
-          .style("stroke","#aaa")
+          .style("stroke",(edge)=>{
+            if("selected" in edge){
+              return "brown"
+            }
+            return "black"
+            })
           .style("stroke-width","5px")
           .on("mouseover", function(d){
             tooltip.html(`La dificultad de este camino es: `+`${d.complexity}`); 
@@ -69,6 +98,7 @@ export const drawGraph = (graph) =>{
           .on("mousemove", function(){
             return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
           .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+      
     
       let node = svg.append("g")
           .attr("class","nodes")
@@ -76,8 +106,18 @@ export const drawGraph = (graph) =>{
           .data(connections.cities)
           .enter().append("circle")
           .attr("r",radius) 
-          .style("fill","black")
-          .style("stroke","#424242")
+          .style("fill",(node)=>{
+            if("selected" in node){
+              return "brown"
+            }
+            return "black"
+            })
+          .style("stroke",(node)=>{
+            if("selected" in node){
+              return "brown"
+            }
+            return "black"
+            })
           .style("stroke-width","1px")
           .style("cursor","pointer");
     
@@ -128,4 +168,10 @@ export const drawGraph = (graph) =>{
     
       simulation.force("link")
         .links(connections.links)
+
     }
+
+
+
+
+
