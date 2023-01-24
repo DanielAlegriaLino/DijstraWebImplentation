@@ -20,6 +20,23 @@ header{
     font-size: 18px;
 }
 
+.title a:link{
+    text-decoration: none;
+}
+
+.title a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+.title a:hover { 
+    text-decoration: none; 
+}
+
+.title a:active { 
+    text-decoration: none; 
+}
+
 .nav-links{
     list-style: none;
 }
