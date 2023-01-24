@@ -82,7 +82,12 @@ export const drawGraph = (graph,path = []) =>{
           .data(connections.links)
           .enter().append("line")
           .attr("marker-end", "url(#end)")
-          .style("stroke", function(d){return d.selected == true ? 'red' : 'black'})
+          .style("stroke",(edge)=>{
+            if("selected" in edge){
+              return "brown"
+            }
+            return "black"
+            })
           .style("stroke-width","5px")
           .on("mouseover", function(d){
             tooltip.html(`La dificultad de este camino es: `+`${d.complexity}`); 
