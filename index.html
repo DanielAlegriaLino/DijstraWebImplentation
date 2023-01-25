@@ -26,7 +26,11 @@
     </header>
     <h1 id="mainText">Determina la ruta más rápida:</h1>
     <div class="SelectionPanel">
-            <input id="start" list = "ciudades" name="StartingCity" class="citySelector" placeholder="Selecciona la ciudad de inicio">
+            <div class="selector1">
+                <label>Ciudad Inicial:
+                <input id="start" list = "ciudades" name="StartingCity" class="citySelector" placeholder="Selecciona la ciudad de inicio">
+                </label>
+            </div>
                 <datalist id="ciudades">
                     <option value="A">A</option>
                     <option value="B">B</option>
@@ -37,10 +41,27 @@
                     <option value="G">G</option>
                     <option value="H">H</option>
                 </datalist>
-            <input id="goal" list = "ciudades" name="EndingCity" class="citySelector" placeholder="Selecciona la ciudad de destino">
+            <div class="selector2">
+                <label>Ciudad Final:
+                <input id="goal" list = "ciudades" name="EndingCity" class="citySelector" placeholder="Selecciona la ciudad de destino">
+                </label>
+            </div>
             <input type="submit" value="Aceptar" class="button" id="button_calculate_route">
     </div>
     <div id="d3svg"></div>
+    <div id="table">
+        <table>
+            <tr>
+                <th>Ciudad 1</th>
+                <th>Ciudad 2</th>
+                <th>Complejidad</th>
+                <th>Fecha</th>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="code/Script.js" type="module"></script>
 </body>

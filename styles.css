@@ -65,6 +65,9 @@ li a{
 
 .SelectionPanel{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    padding-left: 4%;
+    padding-top: 1%;
 }
 
 #mainText{
@@ -74,16 +77,24 @@ li a{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+label,.citySelector{
+    display: block;
+}
+
+.selector1{
+    margin-right: 5%;
+}
+
 .citySelector{
-    margin-left: 53px;
     margin-top: 15px;
+    height: 25px;
     width: 220px;
 }
 
 .button{
     margin-left: 40px;
-    padding: .6% .7%;
-    margin-top: 15px;
+    padding: .5% .7%;
+    margin-top: 25px;
     appearance: none;
     background-color: #000000;
     border: 2px solid #1A1A1A;
