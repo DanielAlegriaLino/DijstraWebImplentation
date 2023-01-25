@@ -44,7 +44,7 @@ export const drawGraph = (graph,path = []) =>{
     
       const width = "1500",
             height = "600",
-            radius = "35";           
+            radius = "40";           
     
       let svg = d3.select("#d3svg")
           .append("svg")
@@ -52,17 +52,17 @@ export const drawGraph = (graph,path = []) =>{
     
           var simulation = d3.forceSimulation()
           .force("link", d3.forceLink().id(function(d) { return d.id; }))
-          .force("link",d3.forceLink().id(d=>d.id).distance(100))
+          .force("link",d3.forceLink().id(d=>d.id).distance(180))
           .force('charge', d3.forceManyBody()
-            .strength(-1900)
-            .theta(0.5)
-            .distanceMax(1500)
+            .strength(-2500)
+            .theta(2)
+            .distanceMax(1200)
           )
           .force('collision', d3.forceCollide().radius(function(d) {
                   return d.radius
                 }))
-                .force("center", d3.forceCenter(document.querySelector("#d3svg").clientWidth / 2, document.querySelector("#d3svg").clientHeight / 2));
-                
+          .force("center", d3.forceCenter(width / 2, height / 2));
+          
       let arrows = svg.append("svg:defs").selectAll("marker")
         .data(["end"])      // Different link/path types can be defined here
         .enter().append("svg:marker")    // This section adds in the arrows
@@ -126,7 +126,7 @@ export const drawGraph = (graph,path = []) =>{
           .text(function(d){return d.name;})
           .attr("class","label")
           .style("text-anchor","middle")
-          .style("font-size","18px")
+          .style("font-size","28px")
           .style("fill","white")
           .style("cursor","pointer");
     
