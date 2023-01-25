@@ -45,8 +45,6 @@ export const drawGraph = (graph,path = []) =>{
       const width = "1500",
             height = "600",
             radius = "40";           
-            height = "520",
-            radius = "35";           
     
       let svg = d3.select("#d3svg")
           .append("svg")
