@@ -49,18 +49,35 @@
             <input type="submit" value="Aceptar" class="button" id="button_calculate_route">
     </div>
     <div id="d3svg"></div>
-    <div id="table">
-        <table>
-            <tr>
-                <th>Ciudad 1</th>
-                <th>Ciudad 2</th>
-                <th>Complejidad</th>
-                <th>Fecha</th>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-        </table>
+    <div id="table-box">
+        <div class="table-row table-head">
+            <div class="table-cell">
+                <p>Origen</p>
+            </div>
+            <div class="table-cell">
+                <p>Destino</p>
+            </div>
+            <div class="table-cell before-cell">
+                <p>Complejidad</p>
+            </div>
+            <div class="table-cell last-cell">
+                <p>Fecha y Hora</p>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-cell">
+                <p>Origen</p>
+            </div>
+            <div class="table-cell">
+                <p>Destino</p>
+            </div>
+            <div class="table-cell before-cell">
+                <p>Complejidad</p>
+            </div>
+            <div class="table-cell last-cell">
+                <p>25/01/2023</p>
+            </div>
+        </div>
     </div>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="code/Script.js" type="module"></script>

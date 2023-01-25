@@ -39,20 +39,19 @@ export const drawGraph = (graph,path = []) =>{
             }
           }
         }
-      
       }
     
       const width = "1500",
-            height = "600",
+            height = "830",
             radius = "40";           
     
       let svg = d3.select("#d3svg")
           .append("svg")
           .attr("viewBox", `0 0 ${width} ${height}`)
     
-          var simulation = d3.forceSimulation()
+          let simulation = d3.forceSimulation()
           .force("link", d3.forceLink().id(function(d) { return d.id; }))
-          .force("link",d3.forceLink().id(d=>d.id).distance(180))
+          .force("link",d3.forceLink().id(d=>d.id).distance(370))
           .force('charge', d3.forceManyBody()
             .strength(-2500)
             .theta(2)
@@ -64,14 +63,14 @@ export const drawGraph = (graph,path = []) =>{
           .force("center", d3.forceCenter(width / 2, height / 2));
           
       let arrows = svg.append("svg:defs").selectAll("marker")
-        .data(["end"])      // Different link/path types can be defined here
-        .enter().append("svg:marker")    // This section adds in the arrows
+        .data(["end"])      
+        .enter().append("svg:marker")    
         .attr("id", String)
         .attr("viewBox", "0 -5 10 10")
         .attr("refX", 17)
         .attr("refY", -0.2)
-        .attr("markerWidth", 8)
-        .attr("markerHeight", 8)
+        .attr("markerWidth", 6)
+        .attr("markerHeight", 6)
         .attr("orient", "auto")
         .append("svg:path")
         .attr("d", "M0,-5L10,0L0,5");    
