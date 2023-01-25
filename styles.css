@@ -92,3 +92,21 @@ li a{
     cursor: pointer;
     display: inline-block;
 }
+
+@media only screen and (max-width: 600px) {
+    .short-text {
+      display: inline-block;
+    }
+    .full-text {
+        display: none;
+      }
+  }
+
+  @media only screen and (min-width: 599px) {
+    .full-text {
+      display: inline-block;
+    }
+    .short-text {
+        display: none;
+      }
+  }
