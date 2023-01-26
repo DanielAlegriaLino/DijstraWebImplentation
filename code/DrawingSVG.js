@@ -81,6 +81,10 @@ export const drawGraph = (graph,path = []) =>{
           .data(connections.links)
           .enter().append("line")
           .attr("marker-end", "url(#end)")
+          .style("opacity",(edge)=>{
+            if("selected" in edge || path.length==0) return "1"
+            return "0.1"
+          })
           .style("stroke",(edge)=>{
             if("selected" in edge){
               return "brown"
