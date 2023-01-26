@@ -37,10 +37,11 @@ button_calculate_route.addEventListener("click", () =>{
         saveRecord(start, goal,complexity)
         svg.innerHTML=''
         drawGraph(graph,path)
+        updateHtmlTable("table-box")
       })
     })
   })
-  updateHtmlTable("table-box")
+  
 })
 
 
