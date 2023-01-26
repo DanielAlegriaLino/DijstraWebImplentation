@@ -1,4 +1,5 @@
 import { drawGraph } from "./DrawingSVG.js";
+import {  } from "./HistoryManage.js";
 
 let graph_promise;
 let path_promise
@@ -31,10 +32,11 @@ button_calculate_route.addEventListener("click", () =>{
   })
 })
 
-
 graph_promise.then((graph) => {
   svg.innerHTML=''
   drawGraph(graph)
 })
+
+const history = document.getElementById('table-box')
 
 
